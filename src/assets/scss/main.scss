@@ -1,28 +1,89 @@
-@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
-@import './vars.scss';
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
+@import "./vars.scss";
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  &::before,
+  &::after {
     box-sizing: border-box;
+  }
+}
+html {
+  font-size: 16px;
 }
 body {
-    font-family: 'Lato', sans-serif;
-    color: #fff;
-    background-image: url('assets/img/bg.png');
-    background-size: cover;
+  font-family: "Lato", sans-serif;
+  color: #fff;
+  background-image: url("assets/img/bg.png");
+  background-size: cover;
 }
 a {
-    text-decoration: none;
-    color: #fff;
+  text-decoration: none;
+  color: #fff;
 }
 .container {
-    width: 100%;
-    max-width: 1140px;
-    margin: 0 auto;
-    border: 1px solid red;
+  width: 100%;
+  max-width: 1160px;
+  padding: 0 20px;
+  margin: 0 auto;
+  border: 1px solid red;
 }
 .d-flex {
-    display: flex;
+  display: flex;
 }
-@import './components/index';
+.landing-link {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid $second-color;
+  z-index: 1;
+  transition: border 200ms;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 5px;
+    background-image: linear-gradient(to top, #e10100, #f80759);
+    background-blend-mode: multiply;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 300ms;
+  }
+  &.start-gradient {
+    border: none;
+    &::before {
+      opacity: 1;
+    }
+    &:hover {
+      border: 1px solid $second-color;
+      &::before {
+        opacity: 0;
+      }
+    }
+  }
+  &:hover {
+    border: none;
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &.small {
+    width: 140px;
+    font-size: 0.75rem;
+    border: 2px solid $second-color;
+    &:hover {
+      border: none;
+    }
+  }
+}
+@import "./components/index";
