@@ -52,8 +52,7 @@ a {
     bottom: 0;
     right: 0;
     border-radius: 5px;
-    background-image: linear-gradient(to top, #e10100, #f80759);
-    background-blend-mode: multiply;
+    @include gradient();
     z-index: -1;
     opacity: 0;
     transition: opacity 300ms;
@@ -85,5 +84,27 @@ a {
       border: none;
     }
   }
+}
+.section-title {
+    color: $pref-color;
+    font-size: 1.2rem;
+}
+.section-subtitle {
+    display: block;
+    margin: 15px 0 0 0;
+    font-size: 1.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    &::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 2px;
+        margin: 30px auto 50px auto;
+        @include gradient();
+    }
+    &.left-line::after {
+        margin: 30px 0 50px 0;
+    }
 }
 @import "./components/index";
