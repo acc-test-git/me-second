@@ -1,4 +1,4 @@
-
+import Slider from './slider';
 (() => {
     const iframe = document.querySelector('.about-video iframe')
     const videoWrap = document.querySelector('.about-videos')
@@ -29,3 +29,8 @@
         e.target.classList.add('video-wrap--active')
     })
 })()
+const reviewsSlider = new Slider({
+    slider: '.reviews-slider',
+    btnNavigation: false,
+    dotsNavigation: true
+})
