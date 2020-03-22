@@ -88,13 +88,21 @@ a {
 .section-title {
     color: $pref-color;
     font-size: 1.2rem;
+    text-align: center;
+    &.left-title {
+        text-align: left;
+    }
 }
 .section-subtitle {
     display: block;
     margin: 15px 0 0 0;
     font-size: 1.85rem;
+    text-align: center;
     text-transform: uppercase;
     letter-spacing: 1.5px;
+    &.left-subtitle {
+        text-align: left;
+    }
     &::after {
         content: '';
         display: block;
