@@ -74,22 +74,19 @@ const anchor = () => {
     });
 }
 anchor()
-const menu = () => {
-    document.querySelector('.btn-wrap').addEventListener('click', function () {
-        this.classList.toggle('close')
-        if (this.classList.contains('close')) {
-            this.nextElementSibling.classList.add('active')
-        } else {
+document.querySelector('.btn-wrap').addEventListener('click', function () {
+    this.classList.toggle('close')
+    if (this.classList.contains('close')) {
+        this.nextElementSibling.classList.add('active')
+    } else {
+        this.nextElementSibling.classList.remove('active')
+    }
+    this.nextElementSibling.onclick = () => {
+        setTimeout(() => {
             this.nextElementSibling.classList.remove('active')
-        }
-        this.nextElementSibling.onclick = () => {
-            setTimeout(() => {
-                this.nextElementSibling.classList.remove('active')
-                this.classList.remove('close')
-            }, 500);
+            this.classList.remove('close')
+        }, 500);
 
-        }
-    })
-}
-menu()
+    }
+})
 
