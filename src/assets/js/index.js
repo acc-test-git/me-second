@@ -1,4 +1,6 @@
 import Slider from './slider';
+import '../../../node_modules/svgxuse/svgxuse';
+
 (() => {
     const iframe = document.querySelector('.about-video iframe')
     const videoWrap = document.querySelector('.about-videos')
@@ -29,23 +31,26 @@ import Slider from './slider';
         e.target.classList.add('video-wrap--active')
     })
 })()
-const trainersSlider = new Slider({
-    slider: '.trainers-slider',
-    movingSlider: 'itemWidth'
-})
-const reviewsSlider = new Slider({
-    slider: '.reviews-slider',
-    btnNavigation: false,
-    dotsNavigation: true
-})
-const asideSlider = new Slider({
-    slider: '.aside-slider',
-    movingSlider: 'itemWidth'
-})
-const sliderBlog = new Slider({
-    slider: '.slider-blog',
-    movingSlider: 'itemWidth'
-})
+const sliders = () => {
+    const trainersSlider = new Slider({
+        slider: '.trainers-slider',
+        movingSlider: 'itemWidth'
+    })
+    const reviewsSlider = new Slider({
+        slider: '.reviews-slider',
+        btnNavigation: false,
+        dotsNavigation: true
+    })
+    const asideSlider = new Slider({
+        slider: '.aside-slider',
+        movingSlider: 'itemWidth'
+    })
+    const sliderBlog = new Slider({
+        slider: '.slider-blog',
+        movingSlider: 'itemWidth'
+    })
+}
+sliders()
 const anchor = () => {
     const anchors = [].slice.call(document.querySelectorAll('a[href*="#"]')),
         animationTime = 300,
@@ -69,18 +74,21 @@ const anchor = () => {
     });
 }
 anchor()
-document.querySelector('.btn-wrap').addEventListener('click', function () {
-    this.classList.toggle('close')
-    if (this.classList.contains('close')) {
-        this.nextElementSibling.classList.add('active')
-    } else {
-        this.nextElementSibling.classList.remove('active')
-    }
-    this.nextElementSibling.onclick = () => {
-        setTimeout(() => {
+const menu = () => {
+    document.querySelector('.btn-wrap').addEventListener('click', function () {
+        this.classList.toggle('close')
+        if (this.classList.contains('close')) {
+            this.nextElementSibling.classList.add('active')
+        } else {
             this.nextElementSibling.classList.remove('active')
-            this.classList.remove('close')
-        }, 500);
+        }
+        this.nextElementSibling.onclick = () => {
+            setTimeout(() => {
+                this.nextElementSibling.classList.remove('active')
+                this.classList.remove('close')
+            }, 500);
 
-    }
-})
+        }
+    })
+}
+

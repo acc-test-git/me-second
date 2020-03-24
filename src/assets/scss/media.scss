@@ -1,4 +1,7 @@
 @media screen and(max-width: $tableWidth) {
+  .slider--button {
+    display: block;
+  }
   .padding-section {
     padding: 60px 0;
   }
@@ -43,6 +46,7 @@
       }
     }
   }
+ 
 }
 
 @media screen and(max-width: $smTableWidth) {
