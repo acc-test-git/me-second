@@ -1,5 +1,4 @@
 .about {
-  margin: 80px 0 0 0;
   .container {
     justify-content: space-between;
     align-items: center;
@@ -24,10 +23,10 @@
       color: #fff;
     }
   }
-  .about-vwrap {
+  &-vwrap {
     margin: 10px;
   }
-  .about-video {
+  &-video {
     position: relative;
     height: 400px;
     width: 560px;
@@ -49,6 +48,7 @@
         right: 0;
         bottom: 0;
         background: $second-color url("/assets/img/poster-video.jpg") no-repeat;
+        background-size: cover;
         z-index: 2;
       }
       &::after {
@@ -65,7 +65,7 @@
       }
     }
   }
-  .about-videos {
+  &-videos {
       margin: 20px 0 0 0;
       justify-content: space-between;
       .video-wrap {

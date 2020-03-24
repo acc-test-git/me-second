@@ -1,12 +1,13 @@
 .trainers {
-  margin: 150px 0 100px 0;
   &-slider {
+    position: relative;
+    overflow: hidden;
     .slider-wrap {
       display: flex;
       margin: 0 -10px;
-      overflow: hidden;
+      transition: transform 500ms;
     }
-    .item {
+    .slider--item {
       position: relative;
       overflow: hidden;
       margin: 0 10px;
@@ -19,7 +20,7 @@
       }
       .info {
         position: absolute;
-        bottom: -20%;
+        bottom: -40%;
         left: 0;
         width: 100%;
         cursor: pointer;

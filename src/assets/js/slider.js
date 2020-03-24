@@ -1,3 +1,4 @@
+//used my slider https://codepen.io/aleksey-kaa/pen/bGdKapr
 function Slider({
     slider,
     movingSlider = "fullWidth",
@@ -23,16 +24,24 @@ function Slider({
     this.movingItemWidth = this.itemWidth + margins;
     this.handlerWidthSlider = movingSlider;
   
+    const maxWindowWidth =   -Math.floor((this.slCountItems.length - 1) / this.maxVisibleItems) *
+    this.sliderWidth
+
+    const remainsItem = this.slCountItems.length % this.maxVisibleItems
+    const validateRemains = remainsItem === 0 ? this.maxVisibleItems : remainsItem
+
+    const elementBalance  = Math.floor(this.maxVisibleItems - validateRemains) * this.movingItemWidth
+
     this.position = {
       currentPosition: +this.slWrap.dataset.start || 0,
       min: 0,
       max:
-        -Math.floor((this.slCountItems.length - 1) / this.maxVisibleItems) *
-        this.sliderWidth
+        Math.floor(maxWindowWidth + elementBalance)
     };
-  
+
     this.init();
   }
+
   Slider.prototype.init = function() {
     this.handlerWidth(this.handlerWidthSlider);
     if (this.buttonHandler) {
@@ -55,7 +64,7 @@ function Slider({
     }
   };
   Slider.prototype.moveSlider = function(pos = 0) {
-    this.position.currentPosition += pos;
+    this.position.currentPosition += Math.floor(pos);
     this.slWrap.style.transform = `translateX(${this.position.currentPosition}px)`;
     if(this.buttonHandler) {
       this.hiddenButton();
@@ -110,14 +119,23 @@ function Slider({
     const { currentPosition, min, max } = this.position;
     let btnPrev = this.sl.querySelector(".prev");
     let btnNext = this.sl.querySelector(".next");
-  
-    if (currentPosition === min) {
+    
+    if (currentPosition >= min) {
       btnPrev.classList.add("hide");
+
+      this.position.currentPosition = min
+
+    } else if(currentPosition + this.movingItemWidth > min) {
+      btnPrev.classList.add("hide");
+
+      this.position.currentPosition = min
+
     } else {
       btnPrev.classList.remove("hide");
     }
-    if (currentPosition === max) {
+    if (currentPosition <= max) {
       btnNext.classList.add("hide");
+      this.position.currentPosition = max
     } else {
       btnNext.classList.remove("hide");
     }
@@ -131,10 +149,10 @@ function Slider({
   };
   
   Slider.prototype.buttonControl = function(e) {
-    const val = e.target;
+    const val = e.target.closest('.slider--button')
+    
     const { currentPosition, min, max } = this.position;
     const { slideMoving, dotsHandler } = this;
-  
     if (val.classList.contains("prev")) {
       if (currentPosition === min) return;
       this.moveSlider(slideMoving);
